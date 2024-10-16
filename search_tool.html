@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL生成ツール</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input {
+            padding: 10px;
+            width: 300px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 15px;
+        }
+    </style>
+    <script>
+        function openGeneratedUrl() {
+            // 入力されたテキストを取得
+            const userInput = document.getElementById("urlInput").value;
+
+            // 入力の頭に「h」を追加
+            const generatedUrl = "h" + userInput;
+
+            // URLが正しい形式かどうか確認（例: https://やhttp://の形に変換）
+            const validUrl = generatedUrl.startsWith("http://") || generatedUrl.startsWith("https://") 
+                ? generatedUrl 
+                : "http://" + generatedUrl;
+
+            // 新しいタブで生成されたURLを開く
+            window.open(validUrl, '_blank');
+
+            // 入力フィールドを空にする
+            document.getElementById("urlInput").value = '';
+        }
+    </script>
+</head>
+<body>
+    <h1>URL生成ツール</h1>
+    <input type="text" id="urlInput" placeholder="URLの一部を入力してください">
+    <button onclick="openGeneratedUrl()">生成されたURLを開く</button>
+    <p>例: www.example.com と入力すると、hwww.example.com が生成されます。</p>
+</body>
+</html>
